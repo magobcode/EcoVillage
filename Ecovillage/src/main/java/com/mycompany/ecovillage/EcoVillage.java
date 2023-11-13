@@ -69,25 +69,30 @@ public class EcoVillage {
             System.out.println("Opción seleccionada: " + op1);
             switch (op1) {
                 case 1:
-                    // Lógica para crear un anuncio
-                    System.out.println("Ingrese el nombre del Artículo:");
-                    String tipoMaterial = sc.nextLine();
-                    sc.nextLine();
+                    System.out.println("Ingrese el número de anuncios que desea crear:");
+                    int numeroDeAnuncios = obtenerEntero(sc);
 
-                    System.out.println("Ingrese la cantidad:");
-                    int cantidad = obtenerEntero(sc);
+                    for (int i = 0; i < numeroDeAnuncios; i++) {
+                        System.out.println("Creando Anuncio #" + (i + 1));
 
-                    System.out.println("Ingrese la calidad de la materia prima:");
-                    String calidad = sc.nextLine();
+                        System.out.println("Ingrese el nombre del Artículo:");
+                        String tipoMaterial = sc.nextLine();
+                        sc.nextLine();
 
-                    System.out.println("Ingrese el Precio en Pesos:");
-                    double precio = obtenerDouble(sc);
+                        System.out.println("Ingrese la cantidad:");
+                        int cantidad = obtenerEntero(sc);
 
-                    // Lógica para crear el anuncio
-                    Anuncio anuncio = new Anuncio(tipoMaterial, cantidad, calidad, precio, EstadoAnuncio.DISPONIBLE);
-                    // Agregar el anuncio al proveedor
-                    proveedor.agregarAnuncio(anuncio);
-                    break;
+                        System.out.println("Ingrese la calidad de la materia prima:");
+                        String calidad = sc.nextLine();
+
+                        System.out.println("Ingrese el Precio en Pesos:");
+                        double precio = obtenerDouble(sc);
+
+                        // Lógica para crear el anuncio
+                        Anuncio anuncio = new Anuncio(tipoMaterial, cantidad, calidad, precio, EstadoAnuncio.DISPONIBLE);
+                        // Agregar el anuncio al proveedor
+                        proveedor.agregarAnuncio(anuncio);
+                    }
                 case 2:
                     // Lógica para promocionar el perfil
                     System.out.println("Promocionando perfil...");
