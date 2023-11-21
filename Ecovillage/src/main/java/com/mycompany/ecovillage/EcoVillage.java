@@ -19,16 +19,25 @@ public class EcoVillage {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
+        boolean ejecucionTerminada = false;
+        
         String nombreUsuario = "";
         String direccionUsuario = "";
         long informacionContacto = 0;
 
+        while (!ejecucionTerminada) {
         System.out.println("Seleccione una Opción:"
                 + " 1 - Proveedor "
-                + " 2 - Comprador ");
+                + " 2 - Comprador "
+                + " 3 - Salir");
         int op = sc.nextInt();
         System.out.println("Opción seleccionada: " + op);
         sc.nextLine();
+        if(op == 3) {
+                    ejecucionTerminada = true;
+                    System.out.println("Saliendo de la aplicación. ¡Hasta luego!");
+                    break;
+        }
 
         if (op == 1) {
             System.out.println("Proveedor");
@@ -64,7 +73,8 @@ public class EcoVillage {
 
             System.out.println("Seleccione una Opción:"
                     + " 1 - Crear Anuncio"
-                    + " 2 - Promocionar mi Perfil");
+                    + " 2 - Promocionar mi Perfil"
+                    + " 3 - Salir");
             int op1 = sc.nextInt();
             System.out.println("Opción seleccionada: " + op1);
             switch (op1) {
@@ -99,8 +109,12 @@ public class EcoVillage {
                     break;
                 default:
                     System.out.println("Opción no válida");
-            }
-        } else {
+                
+                case 3: 
+                    ejecucionTerminada = true;
+                    System.out.println("Saliendo de la aplicación. ¡Hasta luego!");
+                    break;
+            }} else {
                   System.out.println("Comprador");
             System.out.println("Ingrese el nombre del comprador:");
             nombreUsuario = sc.nextLine();
@@ -130,14 +144,22 @@ public class EcoVillage {
             }
                Comprador comprador = new Comprador(nombreUsuario, direccionUsuario, informacionContacto);
                 System.out.println("Anuncios publicados:");
-               if (comprador.getAnunciosPublicados().isEmpty()) {
-                    System.out.println("¡Ups, aún no hay anuncios publicados! Lo siento.");
-                } else {
-                    for (Anuncio anuncio : comprador.getAnunciosPublicados()) {
-                        System.out.println(anuncio);
-                    }
+            if (comprador.getAnunciosPublicados().isEmpty()) {
+                System.out.println("¡Ups, aún no hay anuncios publicados! Lo siento.");
+
+                // Preguntar al usuario si quiere volver a la página de ingreso o salir
+                System.out.println("¿Desea volver a la página de ingreso? (1 - Sí, 2 - Salir)");
+                int opcionVolver = obtenerEntero(sc);
+
+                if (opcionVolver == 2) {
+                    ejecucionTerminada = true;
+                    System.out.println("Saliendo de la aplicación. ¡Hasta luego!");
                 }
+            } else {
+                for (Anuncio anuncio : comprador.getAnunciosPublicados()) {
+                System.out.println(anuncio);
             }
+            }}}
 
         sc.close();
     }
